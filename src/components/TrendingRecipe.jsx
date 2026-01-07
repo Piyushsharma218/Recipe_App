@@ -10,22 +10,24 @@ const TrendingRecipe = ({ title, fetchUrl }) => {
   const meal = data?.meals || [];
 
   const settings = {
-    dots: true,
+    dots: false,
+    arrows:false,
     infinite: true,
     speed: 600,
-    slidesToShow: 3,
+    slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
   };
 
-  if(loading) return(
-    <div className="text-center p-8 text-gray-300">
-      <Loader className="animate-spin inline-block mr-2 text-blue-400"/>
-      Loading {title}...
-    </div>
-  )
+  if (loading)
+    return (
+      <div className="text-center p-8 text-gray-300">
+        <Loader className="animate-spin inline-block mr-2 text-blue-400" />
+        Loading {title}...
+      </div>
+    );
 
   return (
     <>
@@ -35,11 +37,22 @@ const TrendingRecipe = ({ title, fetchUrl }) => {
           {title}
         </h2>
 
-        <div style={{ width: "90%", margin: "auto", padding: "10px" }}>
+        <div className="w-full mx-auto ">
           <Slider {...settings}>
             {meal.map((meal) => (
               <div key={meal.idMeal} className="px-10 flex justify-center">
-                <RecipeCard meal={meal} />
+                <div className="relative bg-gray-900 rounded-xl shadow-xl  transform transition duration-500 cursor-pointer border group border-gray-800 hover:shadow-blue-600/50 mb-5">
+                  {/* hover glow */}
+                  <div className="absolute inset-0 rounded-xl border-r border-transparent group-hover:border-blue-500 transition duration-500"></div>
+
+                  <div className="flex justify-center items-center p-5">
+                    <img
+                      src={meal.strMealThumb}
+                      alt=""
+                      className="h-30 w-30 rounded-xl border border-yellow-400 transition duration-500 group-hover:scale-[1.05]"
+                    />
+                  </div>
+                </div>
               </div>
             ))}
           </Slider>
@@ -47,6 +60,6 @@ const TrendingRecipe = ({ title, fetchUrl }) => {
       </section>
     </>
   );
-}; 
+};
 
 export default TrendingRecipe;

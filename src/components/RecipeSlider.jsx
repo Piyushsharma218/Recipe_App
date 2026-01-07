@@ -10,7 +10,7 @@ const RecipeSlider = ({ title, fetchUrl }) => {
   const meal = data?.meals || [];
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 600,
     slidesToShow: 3,
