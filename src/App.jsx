@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import recipeDetailView from "./components/recipeDetailView";
+import RecipeDetailView from "./components/RecipeDetailView";
 import SearchView from "./components/SearchView";
 import Cuisine from "./components/Cuisine";
 import HomeView from "./components/HomeView";
@@ -16,7 +16,7 @@ function App() {
           <Navbar/> 
           <Cuisine/>
           <Routes>
-            <Route></Route>
+            <Route path='/' element={<HomeView/>}/>
           </Routes>
         </div>
       </Router>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const recipeDetailView = () => {
+const RecipeDetailView = () => {
   return (
     <div>recipeDetailView</div>
   )
 }
 
-export default recipeDetailView
+export default RecipeDetailView
