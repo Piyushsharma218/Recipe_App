@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useDebugValue } from "react";
+import { useFetch } from "./useFetch";
+import RecipeCard from "./RecipeCard";
+import Slider from "react-slick";
+import { Clock, Loader } from "lucide-react";
 
-const TrendingRecipe = () => {
-  return (
-    <div>TrendingRecipe</div>
+const TrendingRecipe = ({ title, fetchUrl }) => {
+  const { data, loading, error } = useFetch(fetchUrl);
+  console.log("my meal daata", data?.meals);
+  const meal = data?.meals || [];
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
+
+  if(loading) return(
+    <div className="text-center p-8 text-gray-300">
+      <Loader className="animate-spin inline-block mr-2 text-blue-400"/>
+      Loading {title}...
+    </div>
   )
-}
 
-export default TrendingRecipe
+  return (
+    <>
+      <section className="mt-2 mx-auto">
+        <h2 className="text-3xl font-extrabold text-gray-100 tracking-tight border-1-4 border-yellow-400 pl-4 flex items-center">
+          <Clock className="w-6 h-6 mr-3 text-blue-500" />
+          {title}
+        </h2>
+
+        <div style={{ width: "90%", margin: "auto", padding: "10px" }}>
+          <Slider {...settings}>
+            {meal.map((meal) => (
+              <div key={meal.idMeal} className="px-10 flex justify-center">
+                <RecipeCard meal={meal} />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </section>
+    </>
+  );
+}; 
+
+export default TrendingRecipe;
