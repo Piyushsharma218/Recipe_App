@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Search, Zap } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 
-const Navbar = () => {
+const Navbar = ({handleSearch}) => {
 
     const [input, setInput] = useState("")
+    const navigate=useNavigate();
 
-    const handlesearch=(e)=>{
-        e.preventDefault();
-        console.log("Searching")
-        setInput("")
+    const searchHandler = (e) => {
+    e.preventDefault();
+
+    if (input.trim()) {
+      handleSearch(input.trim());
+      navigate(`search/${input}`);
+      setInput("");
     }
+  };
+
+
   return (
     <>
       <nav className="sticky top-0 z-50 bg-gray-950/10 backdrop-blur-md shadow-2xl shadow-black/50 border-b border-blue-900/50">
@@ -28,7 +35,7 @@ const Navbar = () => {
             </Link>
 
         
-            <form onSubmit={handlesearch}
+            <form onSubmit={searchHandler}
               
               className="flex-1 max-w-lg mx-4 hidden sm:flex"
             >
