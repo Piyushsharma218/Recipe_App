@@ -95,7 +95,6 @@ const RecipeDetailView = () => {
               </div>
             </div>
           </div>
-        
 
         <div className="mt-14 pt-8 border-t border-gray-800">
           <h2 className="text-3xl font-bold text-gray-100 mb-8 flex items-center">
@@ -116,8 +115,8 @@ const RecipeDetailView = () => {
               </li>
             ))}
           </ol>
-        </div>  
-         </div>
+        </div>
+        </div>
       </main>
     </>
   );

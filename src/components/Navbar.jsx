@@ -47,7 +47,7 @@ const Navbar = ({handleSearch}) => {
                 placeholder="Search dishes, ingredients, or cuisine..."
                 className="w-full px-5 py-2.5 border border-gray-700 bg-gray-900 text-gray-50 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-600/50 transition placeholder-gray-500 shadow-inner shadow-black/50"
               />
-              <button type="submit" className="bg-linear-to-r from-blue-600 to-cyan-500 text-white  rounded-r-full hover:from-blue-700 hover:to-cyan-600 transition duration-300 shadow-lg shadow-blue-800/50 hover:shadow-xl hover:shadow-blue-800/90 p-2.5 cursor-pointer" >
+              <button type="submit" className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white  rounded-r-full hover:from-blue-700 hover:to-cyan-600 transition duration-300 shadow-lg shadow-blue-800/50 hover:shadow-xl hover:shadow-blue-800/90 p-2.5 cursor-pointer" >
                 <Search className="w-5 h-5"/>
               </button>
             </form>
