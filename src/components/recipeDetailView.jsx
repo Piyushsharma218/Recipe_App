@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router";
 import { useFetch, API_URL } from "./useFetch";
-import { ChevronLeft, Loader, Utensils } from "lucide-react";
+import { BookOpen, ChevronLeft, Loader, Utensils } from "lucide-react";
 
 const RecipeDetailView = () => {
   const { id } = useParams();
@@ -29,6 +29,12 @@ const RecipeDetailView = () => {
       });
     }
   }
+  const instructions = meal.strInstructions
+    ? meal.strInstructions
+        .split(".")
+        .map((step) => step.trim())
+        .filter((step) => step.length > 0)
+    : [];
 
   return (
     <>
@@ -59,13 +65,75 @@ const RecipeDetailView = () => {
                 <Utensils className="w-7 h-7 mr-3 text-blue-500" />
                 Key Ingredients
               </h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 list-none p-0"></ul>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 list-none p-0">
+                {ingredients.map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start text-gray-300 text-base ml-2"
+                  >
+                    <span className="text-blue-400 font-extrabold text-lg mr-2 shrink-0">
+                      {"›"}
+                    </span>
+                    <span className="font-semibold text-white mr-1">
+                      {item.measure}
+                    </span>{" "}
+                    {item.ingredient}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 pt-4 border-t border-gray-700">
+                <div className="text-lg text-gray-400 space-x-3 flex flex-wrap gap-y-2">
+                  <span className="bg-blue-600 text-white ml-3 px-4 py-1.5 rounded-full font-semibold text-sm shadow-md">
+                    {meal.strCategory}
+                  </span>
+
+                  <span className="bg-green-600 text-white ml-3 px-4 py-1.5 rounded-full font-semibold text-sm shadow-md">
+                    {meal.strArea}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        
+
+        <div className="mt-14 pt-8 border-t border-gray-800">
+          <h2 className="text-3xl font-bold text-gray-100 mb-8 flex items-center">
+            {" "}
+            <BookOpen className="w-7 h-7 mr-3 text-blue-500" /> Detailed
+            Preparation Steps
+          </h2>
+          <ol className="space-y-6 list-none text-gray-300">
+            {instructions.map((step, index) => (
+              <li
+                key={index}
+                className="text-lg leading-relaxed bg-gray-800 p-5 rounded-xl border-1-6 border-blue-500 shadow-lg shadow-black-30 transition duration-300 hover:bg-gray-700/50"
+              >
+                <span className="font-extrabold text-yellow-400 mr-3 text-xl">
+                  {index + 1}
+                </span>
+                {step.trim()}
+              </li>
+            ))}
+          </ol>
+        </div>  
+         </div>
       </main>
     </>
   );
 };
 
 export default RecipeDetailView;
+
+
+
+
+
+
+
+
+
+
+
+
+
