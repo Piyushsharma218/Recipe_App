@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router";
 import { useFetch, API_URL } from "./useFetch";
 import { BookOpen, ChevronLeft, Loader, Utensils } from "lucide-react";
 
-const RecipeDetailView = () => {
+const RecipeView = () => {
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${API_URL}lookup.php?i=${id}`);
   const meal = data?.meals?.[0];
@@ -122,7 +122,7 @@ const RecipeDetailView = () => {
   );
 };
 
-export default RecipeDetailView;
+export default RecipeView;
 
 
 

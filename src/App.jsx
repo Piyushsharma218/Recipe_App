@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Navbar from "./components/Navbar";
-import RecipeDetailView from "./components/RecipeDetailView";
+import RecipeView from "./components/RecipeView";
 import SearchView from "./components/SearchView";
 import CuisineBar from "./components/Cuisine";
 import HomeView from "./components/HomeView";
@@ -71,7 +71,7 @@ const App = () => {
           <CuisineBar filterByArea={filterByArea} />
           <Routes>
             <Route path="/" element={<HomeView filterByCategory={filterByCategory} />} />
-            <Route path="/recipe/:id" element={<RecipeDetailView />} />
+            <Route path="/recipe/:id" element={<RecipeView />} />
             <Route
               path="/search/:query"
               element={
